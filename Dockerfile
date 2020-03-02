@@ -1,5 +1,3 @@
-# Oracle Java 8 Dockerfile
-
 FROM ubuntu:16.04
 
 ARG HOME=/usr/local/lib
