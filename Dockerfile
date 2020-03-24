@@ -9,7 +9,8 @@ WORKDIR $HOME
 
 RUN apt-get update
 RUN apt-get install -y build-essential
-RUN apt-get install zlib1g-dev
+RUN apt-get install -y zlib1g-dev
+RUN apt-get install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 RUN apt-get install -y wget
 
 ENV PYTHON_HOME=$HOME/Python-3.6.3
@@ -19,12 +20,18 @@ RUN rm -f $PYTHON_ARHIVE
 
 WORKDIR $PYTHON_HOME
 
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
 RUN ./configure
 RUN make 
 RUN make install
 
 RUN echo "Python3 has been installed:"
 RUN python3 -V
+
+RUN pip3 install --upgrade pip
+RUN pip3 install pipenv
 
 WORKDIR $HOME
 
